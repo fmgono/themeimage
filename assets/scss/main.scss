@@ -1,0 +1,107 @@
+@use 'themes';
+@use 'fonts';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 16px; // 1rem
+    @apply tw-font-sans tw-leading-sm;
+  }
+  body {
+    @apply tw-overscroll-none;
+  }
+  small {
+    @apply tw-text-sm;
+  }
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  ::selection {
+    @apply tw-text-accent-secondary tw-bg-dim-1;
+  }
+
+  /* themes */
+  main {
+    /* COMMON PALETTE */
+    // base
+    --black: 0, 0, 0;
+    --white: 255, 255, 255;
+
+    --base-100: 250, 250, 251;
+    --base-200: 232, 231, 232;
+    --base-300: 209, 208, 210;
+    --base-400: 186, 184, 187;
+    --base-500: 163, 160, 164;
+    --base-600: 140, 137, 141;
+    --base-700: 116, 114, 118;
+    --base-800: 93, 91, 95;
+    --base-900: 70, 68, 71;
+    --base-1000: 47, 45, 47;
+    --base-1100: 23, 23, 24;
+    --base-1200: 5, 5, 8;
+
+    /* DEFAULTS */
+    /* accents */
+    // primary
+    --accent-primary-100: var(--base-200);
+    --accent-primary-200: var(--base-300);
+    --accent-primary-300: var(--base-400);
+    --accent-primary-400: var(--base-500);
+    --accent-primary-500: var(--base-600);
+    --accent-primary-600: var(--base-700);
+    --accent-primary-700: var(--base-800);
+    --accent-primary-800: var(--base-900);
+    --accent-primary-900: var(--base-1000);
+    // secondary
+    --accent-secondary-100: var(--accent-primary-100);
+    --accent-secondary-200: var(--accent-primary-200);
+    --accent-secondary-300: var(--accent-primary-300);
+    --accent-secondary-400: var(--accent-primary-400);
+    --accent-secondary-500: var(--accent-primary-500);
+    --accent-secondary-600: var(--accent-primary-600);
+    --accent-secondary-700: var(--accent-primary-700);
+    --accent-secondary-800: var(--accent-primary-800);
+    --accent-secondary-900: var(--accent-primary-900);
+    // tertiary
+    --accent-tertiary-100: var(--accent-secondary-100);
+    --accent-tertiary-200: var(--accent-secondary-200);
+    --accent-tertiary-300: var(--accent-secondary-300);
+    --accent-tertiary-400: var(--accent-secondary-400);
+    --accent-tertiary-500: var(--accent-secondary-500);
+    --accent-tertiary-600: var(--accent-secondary-600);
+    --accent-tertiary-700: var(--accent-secondary-700);
+    --accent-tertiary-800: var(--accent-secondary-800);
+    --accent-tertiary-900: var(--accent-secondary-900);
+  
+    // Default: be preferred color scheme
+    @include themes.light-mode;
+    @media (prefers-color-scheme: dark) {
+      @include themes.dark-mode;
+    }
+
+    .image-mode.image-light &,
+    .light-mode & {
+      @include themes.light-mode;
+    }
+    .image-mode.image-dark &,
+    .dark-mode & {
+      @include themes.dark-mode;
+    }
+  }
+}
+
+/* Vue Animations */
+
+// Fade
+.fade-enter-active,
+.fade-leave-active {
+  transition-timing-function: ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
